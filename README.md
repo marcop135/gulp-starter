@@ -1,12 +1,9 @@
-# Front-end Boilerplate using Sass and Gulp 4
+# File processing boilerplate for HTML, Sass, JS, images and SVG with Gulp.js via Node.js
 
 Using a set of boilerplate files when you're starting a website project can be a huge time-saver. Instead of having to start from scratch or copy and paste from previous projects, you can get up and running in just a minute or two.
 
-I wanted to share my own boilerplate that I use for simple front-end websites that use HTML, SCSS, and JavaScript. And I'm using Gulp 4 to compile, prefix, and minify my files.
-
-I also wrote a rather detailed walkthrough on how to get up and running with Gulp 4, as well as migration tips from Gulp 3. 
-
-You can read that on my blog [here](https://coder-coder.com/gulp-4-walk-through).
+You can read [the original project's blog post here](https://coder-coder.com/gulp-4-walk-through).
+Kudos to @thecodercoder
 
 ## Quickstart guide
 
@@ -15,11 +12,19 @@ You can read that on my blog [here](https://coder-coder.com/gulp-4-walk-through)
 * Run `npm install`
 * Run `gulp` to run the default Gulp task
 
-In this proejct, Gulp is configured to run the following functions:
+In this project, Gulp will be configured to run the following functions:
 
-* Compile the SCSS files to CSS
-* Autoprefix and minify the CSS file
-* Concatenate the JS files
-* Uglify the JS files
-* Move final CSS and JS files to the `/dist` folder
- 
+* Install a local server for live-reloading with [browsersync] https://www.npmjs.com/package/browser-sync 
+* Compile the SCSS files to CSS with [gulp-sass](https://www.npmjs.com/package/gulp-sass)
+* Minify the CSS files with [gulp-cssnano](https://www.npmjs.com/package/gulp-cssnano)
+* Autoprefix the CSS files with [autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
+* Extract critical CSS rules into a seperate stylesheet with [critical-css](https://www.npmjs.com/package/gulp-critical-css)
+* Concatenate the JS files with [gulp-concat](https://www.npmjs.com/package/gulp-concat)
+* Transpile the JS files with [gulp-babel](https://www.npmjs.com/package/gulp-babel)
+* Uglify the JS files with [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
+* Create SCSS/JS sourcemaps with [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
+* Compress the images with [image-min](https://www.npmjs.com/package/gulp-imagemin)
+* Compress the SVGs with [svg-min](https://www.npmjs.com/package/gulp-svgmin)
+* Append a query string in the index.html file to the final CSS and JS files for cache-busting with [gulp-cache-bust](https://www.npmjs.com/package/gulp-cache-bust)
+* Move final CSS, JS, images and SVGs files to the `/dist` folder
+
