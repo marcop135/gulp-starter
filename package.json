@@ -1,11 +1,11 @@
 {
-  "name": "frontend-boilerplate",
+  "name": "gulp-starter",
   "version": "1.0.0",
-  "description": "Simple front-end boilerplate using Gulp 4",
+  "description": "Powerful front-end boilerplate using Gulp 4",
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thecodercoder/frontend-boilerplate.git"
+    "url": "git+https://github.com/marcop135/gulp-starter.git"
   },
   "keywords": [
     "gulp",
@@ -14,21 +14,25 @@
     "css",
     "javascript"
   ],
-  "author": "@thecodercoder",
-  "license": "ISC",
+  "author": "@marcop135",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/thecodercoder/frontend-boilerplate/issues"
+    "url": "https://github.com/marcop135/gulp-starter/issues"
   },
-  "homepage": "https://github.com/thecodercoder/frontend-boilerplate#readme",
+  "homepage": "https://github.com/marcop135/gulp-starter#readme",
   "devDependencies": {
-    "autoprefixer": "^9.7.0",
-    "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-postcss": "^8.0.0",
-    "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2"
+    "gulp-postcss": "^8.0.0",
+    "gulp-autoprefixer": "^7.0.1",
+    "cssnano": "^4.1.10",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sourcemaps": "^2.6.5"    
   }
 }
