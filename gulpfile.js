@@ -1,38 +1,60 @@
+'use strict';
+
 // Initialize modules
-// Importing specific gulp API functions lets us write them below as series() instead of gulp.series()
-const { src, dest, watch, series, parallel } = require("gulp");
+// Import specific gulp API functions lets us write them below as series()
+// instead of gulp.series()
+const { src, dest, watch, series, parallel } = require('gulp');
 
-// Importing all the Gulp-related packages we want to use
-const sass = require("gulp-sass");
-const postcss = require("gulp-postcss");
-const autoprefixer = require("autoprefixer");
-const cssnano = require("cssnano");
-const imagemin = require("gulp-imagemin");
-const babel = require("gulp-babel");
-const concat = require("gulp-concat");
-const uglify = require("gulp-uglify");
-const sourcemaps = require("gulp-sourcemaps");
-var replace = require("gulp-replace");
+// Import all the Gulp-related packages we want to use
+const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const imagemin = require('gulp-imagemin');
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const sourcemaps = require('gulp-sourcemaps');
+const cachebust = require('gulp-cache-bust');
+const browserSync = require('browser-sync');
 
-// File paths
+const server = browserSync.create();
+
+// setup the BrowserSync server
+function reload(done) {
+  server.reload();
+  done();
+}
+function serve(done) {
+  server.init({
+    server: {
+      baseDir: './dist',
+    },
+  });
+  done();
+}
+
+// File paths to watch
 const files = {
-  scssPath: "src/assets/scss/**/*.scss",
-  jsPath: "src/assets/js/**/*.js",
-  imagesPath: "src/assets/images/**/*.*",
+  htmlPath: './*.html',
+  scssPath: 'src/assets/scss/**/*.scss',
+  jsPath: 'src/assets/js/**/*.js',
+  imagePath: 'src/assets/images/**/*.*',
 };
 
-// Sass task: compiles the style.scss file into style.css
+// Sass task
+// compiles the style.scss file into style.css
 function scssTask() {
   return src(files.scssPath)
     .pipe(sourcemaps.init()) // initialize sourcemaps first
     .pipe(sass()) // compile SCSS to CSS
     .pipe(postcss([autoprefixer(), cssnano()])) // PostCSS plugins
-    .pipe(sourcemaps.write(".")) // write sourcemaps file in current directory
-    .pipe(dest("dist/assets/css")) // put final CSS in dist folder
-    .pipe(browserSync.stream()); // livereload
+    .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
+    .pipe(dest('dist/assets/css')); // put final CSS in dist folder
 }
 
-// JS task: concatenates and uglifies JS files to script.js
+// JS task
+// concatenates and uglifies JS files
 function jsTask() {
   return src([
     files.jsPath,
@@ -41,45 +63,48 @@ function jsTask() {
     .pipe(sourcemaps.init())
     .pipe(
       babel({
-        presets: ["@babel/env"],
+        presets: ['@babel/env'],
       })
     )
-    .pipe(concat("app.min.js"))
+    .pipe(concat('app.min.js'))
     .pipe(uglify())
-    .pipe(sourcemaps.write("."))
-    .pipe(dest("dist/assets/js"));
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('dist/assets/js'));
 }
 
-// images task: Minify PNG, JPEG, GIF and SVG images
-function imagesTask() {
-  return src(files.imagesPath)
-    .pipe(imagemin())
-    .pipe(dest("dist/assets/images"));
+// image task
+// compress PNG, JPEG, GIF and SVG images
+function imageTask() {
+  return src(files.imagePath).pipe(imagemin()).pipe(dest('dist/assets/images'));
 }
 
-// Cachebust
+// cache busting task
+// add a timestamp string to CSS/JS style/script
 function cacheBustTask() {
-  var cbString = new Date().getTime();
-  return src(["index.html"])
-    .pipe(replace(/cb=\d+/g, "cb=" + cbString))
-    .pipe(dest("."));
+  return src(files.htmlPath)
+    .pipe(
+      cachebust({
+        type: 'timestamp',
+      })
+    )
+    .pipe(dest('dist/'));
 }
 
-// Watch task: watch SCSS, JS and image files for changes
-// If any change, run scss and js tasks simultaneously
+// watch task: watch SCSS, JS, image and HTML files for changes
+// If any change, run scss, js and image tasks simultaneously
+// then reload via browsersync
 function watchTask() {
   watch(
-    [files.scssPath, files.jsPath],
-    { interval: 1000, usePolling: true }, //Makes docker work
-    series(parallel(scssTask, jsTask, imagesTask), cacheBustTask)
+    [files.htmlPath, files.scssPath, files.jsPath, files.imagePath],
+    series(parallel(scssTask, jsTask, imageTask, cacheBustTask), reload)
   );
 }
 
 // Export the default Gulp task so it can be run
-// Runs the scss, js and images tasks simultaneously
-// then runs cacheBust, then watch task
+// Runs the scss, js, image and cache busting tasks simultaneously
+// start local server and watch tasks
 exports.default = series(
-  parallel(scssTask, jsTask, imagesTask),
-  cacheBustTask,
+  parallel(scssTask, jsTask, imageTask, cacheBustTask),
+  serve,
   watchTask
 );
