@@ -4,30 +4,53 @@
     <meta charset="utf-8">
     <title>HMTL template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="dist/assets/css/main.css?cb=1586623795428">
+    <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>
     <main>
 
-      <h1>Gulp Starter</h1>
+      <h1>gulp-starter (v1.1.0)</h1>
+      <p>File processing boilerplate for Sass, JS, images and SVG files with Gulp.js &amp; friends</p>
 
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam doloribus eaque, quae facilis esse facere, nihil, eum odit maiores aliquam praesentium exercitationem! Aperiam magnam enim id deleniti quo tenetur facere.</p>
+      <h2>3 steps</h2>
+      <pre><code>$ git clone https://github.com/marcop135/gulp-starter.git
+$ npm install
+$ gulp
+</code></pre><i>...ready!</i>
 
-      <div class="container-img">
-        <img src="dist/assets/images/cat.jpg" alt="a nice cat picture">
-      </div>
+      <h2>gulp-imagemin test</h2>
+
+      <p>This is a JPG image (the original size was 147KB)</p>
+      <img src="assets/images/cat.jpg" alt="a nice cat">
+      <p>This is a PNG image (original size: 287KB)</p>
+      <img src="assets/images/cat.png" alt="a nice cat">
+      <p>This is a GIF image (original size: 144KB)</p>
+      <img src="assets/images/cat.gif" alt="a nice cat">
+      <p>This is a SVG image (original size: 269 bytes)</p>
+      <img src="assets/images/moon.svg" width="20" height="20" alt="moon icon">     
       
-      <img src="dist/assets/images/moon.svg" width="20" height="20" alt="moon icon">
+      <h2>Dependencies</h2>
+      <pre><code>"devDependencies": {
+  "gulp",
+  "gulp-sass",
+  "gulp-postcss",
+  "gulp-autoprefixer",
+  "cssnano"",
+  "@babel/core"",
+  "@babel/preset-env"",
+  "gulp-babel"",
+  "gulp-concat"",
+  "gulp-uglify"",
+  "gulp-imagemin"",
+  "gulp-sourcemaps",
+  "browser-sync",
+  "gulp-cache-bust"
+}</code></pre>
 
-      <h2>How to</h2>
-      <ul>
-        <li><code>$ git clone https://github.com/marcop135/gulp-starter.git</code></li>
-        <li><code>npm install</code></li>
-        <li><code>gulp</code></li>
-      </ul>
-      
+    <h2>GitHub</h2>
+    <a href="https://github.com/marcop135/gulp-starter/">https://github.com/marcop135/gulp-starter"</a>
     </main>
 
-    <script src="dist/assets/js/app.min.js?cb=1586623795428"></script>
-  </body>
+    <script src="assets/js/app.min.js"></script>
+s  </body>
 </html>
