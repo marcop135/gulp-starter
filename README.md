@@ -1,9 +1,9 @@
-# File processing boilerplate for Sass, JS, PNG, JPEG, GIF and SVG images with Gulp.js
+# File processing boilerplate for HTML, Sass, JS, PNG, JPEG, GIF and SVG files with Gulp.js
 
 Using a set of boilerplate files when you're starting a website project can be a huge time-saver. Instead of having to start from scratch or copy and paste from previous projects, you can get up and running in just a minute or two.
 
-You can read [the original project's blog post here](https://coder-coder.com/gulp-4-walk-through).
-Kudos to @thecodercoder
+You can read the original project's blog post [here](https://coder-coder.com/gulp-4-walk-through).
+Kudos to [@thecodercoder](https://github.com/thecodercoder)
 
 ## Quickstart guide
 
@@ -23,4 +23,5 @@ In this project, Gulp will be configured to run the following functions:
 * Uglify the JS file with [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
 * Create SCSS/JS sourcemaps with [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
 * Compress the images with [image-min](https://www.npmjs.com/package/gulp-imagemin)
-* Move final CSS, JS and image files to the `/dist` folder
+* Bust the cache with [gulp-cache-bust](https://www.npmjs.com/package/gulp-cache-bust)
+* Move final files to the `/dist` folder
