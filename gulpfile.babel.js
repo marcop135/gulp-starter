@@ -3,19 +3,19 @@
 // Initialize modules
 // Import specific gulp API functions lets us write them below as series()
 // instead of gulp.series()
-const { src, dest, watch, series, parallel } = require('gulp');
+import { src, dest, watch, series, parallel } from 'gulp';
 
 // Import all the Gulp-related packages we want to use
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const imagemin = require('gulp-imagemin');
-const babel = require('gulp-babel');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const cachebust = require('gulp-cache-bust');
-const browserSync = require('browser-sync');
+import sass from 'gulp-sass';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+import imagemin from 'gulp-imagemin';
+import babel from 'gulp-babel';
+import concat from 'gulp-concat';
+import uglify from 'gulp-uglify';
+import cachebust from 'gulp-cache-bust';
+import browserSync from 'browser-sync';
 
 const server = browserSync.create();
 
@@ -94,7 +94,7 @@ function watchTask() {
 // Export the default Gulp task so it can be run
 // Runs the scss, js, image and cache busting tasks simultaneously
 // start local server and watch tasks
-exports.default = series(
+export default series(
   parallel(scssTask, jsTask, imageTask, cacheBustTask),
   serve,
   watchTask
