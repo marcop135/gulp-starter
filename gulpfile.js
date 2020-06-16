@@ -57,11 +57,7 @@ function jsTask() {
     files.jsPath,
     //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
   ], { sourcemaps: true })
-    .pipe(
-      babel({
-        presets: ['@babel/env'],
-      })
-    )
+    .pipe(babel())
     .pipe(concat('app.min.js'))
     .pipe(uglify())
     .pipe(dest('dist/assets/js', { sourcemaps: '.' }));
