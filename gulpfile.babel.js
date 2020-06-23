@@ -3,20 +3,19 @@
 // Initialize modules
 // Import specific gulp API functions lets us write them below as series()
 // instead of gulp.series()
-const { src, dest, watch, series, parallel } = require('gulp');
+import { src, dest, watch, series, parallel } from 'gulp';
 
 // Import all the Gulp-related packages we want to use
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const imagemin = require('gulp-imagemin');
-const babel = require('gulp-babel');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const sourcemaps = require('gulp-sourcemaps');
-const cachebust = require('gulp-cache-bust');
-const browserSync = require('browser-sync');
+import sass from 'gulp-sass';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+import imagemin from 'gulp-imagemin';
+import babel from 'gulp-babel';
+import concat from 'gulp-concat';
+import uglify from 'gulp-uglify';
+import cachebust from 'gulp-cache-bust';
+import browserSync from 'browser-sync';
 
 const server = browserSync.create();
 
@@ -45,12 +44,10 @@ const files = {
 // Sass task
 // compiles the style.scss file into style.css
 function scssTask() {
-  return src(files.scssPath)
-    .pipe(sourcemaps.init()) // initialize sourcemaps first
+  return src(files.scssPath, { sourcemaps: true })
     .pipe(sass()) // compile SCSS to CSS
     .pipe(postcss([autoprefixer(), cssnano()])) // PostCSS plugins
-    .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
-    .pipe(dest('dist/assets/css')); // put final CSS in dist folder
+    .pipe(dest('dist/assets/css', { sourcemaps: '.' })); // put final CSS in dist folder
 }
 
 // JS task
@@ -59,17 +56,11 @@ function jsTask() {
   return src([
     files.jsPath,
     //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
-  ])
-    .pipe(sourcemaps.init())
-    .pipe(
-      babel({
-        presets: ['@babel/env'],
-      })
-    )
+  ], { sourcemaps: true })
+    .pipe(babel())
     .pipe(concat('app.min.js'))
     .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest('dist/assets/js'));
+    .pipe(dest('dist/assets/js', { sourcemaps: '.' }));
 }
 
 // image task
@@ -103,7 +94,7 @@ function watchTask() {
 // Export the default Gulp task so it can be run
 // Runs the scss, js, image and cache busting tasks simultaneously
 // start local server and watch tasks
-exports.default = series(
+export default series(
   parallel(scssTask, jsTask, imageTask, cacheBustTask),
   serve,
   watchTask
