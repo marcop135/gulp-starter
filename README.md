@@ -21,7 +21,6 @@ In this project, Gulp will be configured to run the following functions:
 * Transpile the JS file with [gulp-babel](https://www.npmjs.com/package/gulp-babel)
 * Concatenate the JS files with [gulp-concat](https://www.npmjs.com/package/gulp-concat)
 * Uglify the JS file with [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
-* Create SCSS/JS sourcemaps with [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
 * Compress the images with [image-min](https://www.npmjs.com/package/gulp-imagemin)
 * Bust the cache with [gulp-cache-bust](https://www.npmjs.com/package/gulp-cache-bust)
 * Move final files to the `/dist` folder
