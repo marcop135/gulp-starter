@@ -17,6 +17,7 @@ In this project, Gulp will be configured to run the following functions:
 * Install a local server for live-reloading with [browsersync](https://www.npmjs.com/package/browser-sync)
 * Compile the SCSS files to CSS with [gulp-sass](https://www.npmjs.com/package/gulp-sass)
 * Autoprefix the CSS file with [autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
+* Rename compressed CSS/JS files [gulp-rename](https://www.npmjs.com/package/gulp-rename)
 * Minify the CSS file with [gulp-cssnano](https://www.npmjs.com/package/gulp-cssnano)
 * Transpile the JS file with [gulp-babel](https://www.npmjs.com/package/gulp-babel)
 * Concatenate the JS files with [gulp-concat](https://www.npmjs.com/package/gulp-concat)
