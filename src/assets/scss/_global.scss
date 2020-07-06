@@ -1,16 +1,25 @@
 // this file is just a good starting point
-// this project may be a better start https://github.com/h5bp/main.css
 //
 // you may use my (S)CSS framework https://github.com/marcop135/bullframe.css
 //
 // ...this is a list of awesome CSS frameworks 
 // https://github.com/troxler/awesome-css-frameworks
 
+// test variables
 body {
   background-color: $light;
   color: $dark;
 }
 
+// create a container
+main {
+  padding: 15px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// responsive images by default
 img {
   max-width: 100%; 
   height: auto;
@@ -19,15 +28,4 @@ img {
 // test gulp-autoprefixer
 input::placeholder {
 	color: $gray;
-}
-
-h1 {
-  margin-top: 0;
-}
-
-main {
-  padding: 2.4rem 2.4rem 4.8rem;
-  max-width: 76.8rem;
-  margin-left: auto;
-  margin-right: auto;
 }
