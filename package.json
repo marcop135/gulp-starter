@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/marcop135/gulp-starter#readme",
   "devDependencies": {
-    "@babel/core": "^7.11.5",
+    "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/register": "^7.11.5",
     "browser-sync": "^2.26.12",
