@@ -29,7 +29,7 @@ function reload(done) {
 function serve(done) {
   server.init({
     server: {
-      baseDir: "./",
+      baseDir: "./dist",
     },
   });
   done();
