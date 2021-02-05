@@ -1,22 +1,22 @@
-"use strict";
+'use strict';
 
 // Initialize modules
 // Import specific gulp API functions lets us write them below as series()
 // instead of gulp.series()
-import { src, dest, watch, series, parallel } from "gulp";
+import { src, dest, watch, series, parallel } from 'gulp';
 
 // Import all the Gulp-related packages we want to use
-import sass from "gulp-sass";
-import postcss from "gulp-postcss";
-import rename from "gulp-rename";
-import autoprefixer from "autoprefixer";
-import cssnano from "cssnano";
-import imagemin from "gulp-imagemin";
-import babel from "gulp-babel";
-import concat from "gulp-concat";
-import uglify from "gulp-uglify";
-import cachebust from "gulp-cache-bust";
-import browserSync from "browser-sync";
+import sass from 'gulp-sass';
+import postcss from 'gulp-postcss';
+import rename from 'gulp-rename';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+import imagemin from 'gulp-imagemin';
+import babel from 'gulp-babel';
+import concat from 'gulp-concat';
+import uglify from 'gulp-uglify';
+import cachebust from 'gulp-cache-bust';
+import browserSync from 'browser-sync';
 
 const server = browserSync.create();
 
@@ -29,7 +29,7 @@ function reload(done) {
 function serve(done) {
   server.init({
     server: {
-      baseDir: "./dist",
+      baseDir: './dist',
     },
   });
   done();
@@ -37,10 +37,10 @@ function serve(done) {
 
 // File paths to watch
 const files = {
-  htmlPath: "./*.html",
-  scssPath: "src/assets/scss/**/*.scss",
-  jsPath: "src/assets/js/**/*.js",
-  imagePath: "src/assets/images/**/*.*",
+  htmlPath: './*.html',
+  scssPath: 'src/assets/scss/**/*.scss',
+  jsPath: 'src/assets/js/**/*.js',
+  imagePath: 'src/assets/images/**/*.*',
 };
 
 // Sass task
@@ -48,12 +48,12 @@ const files = {
 function scssTask() {
   return (
     src(files.scssPath)
-      .pipe(sass({ outputStyle: "expanded" }))
+      .pipe(sass({ outputStyle: 'expanded' }))
       // PostCSS plugins
       .pipe(postcss([autoprefixer()]))
 
       // write pre-minifies styles
-      .pipe(dest("dist/assets/css"))
+      .pipe(dest('dist/assets/css'))
 
       // PostCSS plugins
       .pipe(postcss([cssnano()]))
@@ -61,14 +61,14 @@ function scssTask() {
       // rename files
       .pipe(
         rename({
-          suffix: ".min",
+          suffix: '.min',
         })
       )
 
       // put final CSS file in dist folder
       .pipe(
-        dest("dist/assets/css", {
-          sourcemaps: ".",
+        dest('dist/assets/css', {
+          sourcemaps: '.',
         })
       )
   );
@@ -79,21 +79,21 @@ function scssTask() {
 function jsTask() {
   return (
     src(files.jsPath)
-    //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
-    
+      //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
+
       // transpile files
       .pipe(babel())
 
       // concat files
-      .pipe(concat("app.min.js"))
+      .pipe(concat('app.min.js'))
 
       // write pre-minifies files
-      .pipe(dest("dist/assets/js"))
+      .pipe(dest('dist/assets/js'))
 
       // rename files
       .pipe(
         rename({
-          suffix: ".min",
+          suffix: '.min',
         })
       )
 
@@ -102,8 +102,8 @@ function jsTask() {
 
       // put final JS file in /dist folder
       .pipe(
-        dest("dist/assets/js", {
-          sourcemaps: ".",
+        dest('dist/assets/js', {
+          sourcemaps: '.',
         })
       )
   );
@@ -112,7 +112,7 @@ function jsTask() {
 // image task
 // compress PNG, JPEG, GIF and SVG images
 function imageTask() {
-  return src(files.imagePath).pipe(imagemin()).pipe(dest("dist/assets/images"));
+  return src(files.imagePath).pipe(imagemin()).pipe(dest('dist/assets/images'));
 }
 
 // cache busting task
@@ -121,10 +121,10 @@ function cacheBustTask() {
   return src(files.htmlPath)
     .pipe(
       cachebust({
-        type: "timestamp",
+        type: 'timestamp',
       })
     )
-    .pipe(dest("dist/"));
+    .pipe(dest('dist/'));
 }
 
 // watch task: watch SCSS, JS, image and HTML files for changes
