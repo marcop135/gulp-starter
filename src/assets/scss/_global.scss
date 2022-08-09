@@ -2,7 +2,7 @@
 //
 // you may use my (S)CSS framework https://github.com/marcop135/bullframe.css
 //
-// ...this is a list of awesome CSS frameworks 
+// ...this is a list of awesome CSS frameworks
 // https://github.com/troxler/awesome-css-frameworks
 
 // test variables
@@ -21,11 +21,15 @@ main {
 
 // responsive images by default
 img {
-  max-width: 100%; 
+  max-width: 100%;
   height: auto;
+}
+
+p.lead {
+  font-size: 125%;
 }
 
 // test gulp-autoprefixer
 input::placeholder {
-	color: $gray;
+  color: $gray;
 }
