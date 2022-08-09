@@ -5,8 +5,11 @@
 // instead of gulp.series()
 import { src, dest, watch, series, parallel } from 'gulp';
 
+// Upgrade gulp-sass to v5
+// https://github.com/dlmanning/gulp-sass/tree/master#migrating-to-version-5
+const sass = require('gulp-sass')(require('sass'));
+
 // Import all the Gulp-related packages we want to use
-import sass from 'gulp-sass';
 import postcss from 'gulp-postcss';
 import rename from 'gulp-rename';
 import autoprefixer from 'autoprefixer';
