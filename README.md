@@ -1,4 +1,4 @@
-# File processing boilerplate for HTML, Sass, JS, PNG, JPEG, GIF and SVG files with Gulp.js
+# File processing boilerplate for HTML, Sass, JS, PNG, JPEG, GIF, and SVG files with Gulp.js
 
 Using a set of boilerplate files when you're starting a website project can be a huge time-saver. Instead of having to start from scratch or copy and paste from previous projects, you can get up and running in just a minute or two.
 
@@ -10,6 +10,7 @@ Kudos to [@thecodercoder](https://github.com/thecodercoder)
 * Clone or download this Git repo onto your computer.
 * Install [Node.js](https://nodejs.org/en/) if you don't have it yet.
 * Run `npm install`
+* Run `npm install gulp-sass node-sass` to make gulp-sass v5 work ([Read more](https://github.com/dlmanning/gulp-sass/tree/master#migrating-to-version-5))
 * Run `gulp` to run the default Gulp task
 
 In this project, Gulp will be configured to run the following functions:
