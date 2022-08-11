@@ -10,8 +10,9 @@ Kudos to [@thecodercoder](https://github.com/thecodercoder)
 * Clone or download this Git repo onto your computer.
 * Install [Node.js](https://nodejs.org/en/) if you don't have it yet.
 * Run `npm install`
-* Run `npm install sass gulp-sass --save-dev` to make gulp-sass v5 work ([Read more](https://github.com/dlmanning/gulp-sass/tree/master#migrating-to-version-5))
 * Run `gulp` to run the default Gulp task
+
+## Gulp plugins
 
 In this project, Gulp will be configured to run the following functions:
 
@@ -26,3 +27,7 @@ In this project, Gulp will be configured to run the following functions:
 * Compress the images with [image-min](https://www.npmjs.com/package/gulp-imagemin)
 * Bust the cache with [gulp-cache-bust](https://www.npmjs.com/package/gulp-cache-bust)
 * Move final files to the `/dist` folder
+
+## Testing and compatibility
+
+This project has been tested in *npm v18.7.0*.
