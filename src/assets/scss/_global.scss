@@ -9,31 +9,52 @@
 // CDN:
 // <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marcop135/bullframe.css@latest/bullframe.min.css">
 
-// test variables
+@use 'utils/variables' as vars;
+
+// just testing CSS variables
 body {
-  background-color: main.$light;
-  color: main.$dark;
+  background-color: vars.$light;
+  color: vars.$dark;
 }
 
-// create a container
-main {
+// create two container
+main,
+footer {
   padding: 15px;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
-// responsive images by default
+// make all images responsive by default
 img {
   max-width: 100%;
   height: auto;
 }
 
+// customise typography
+h1 {
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 30px;
+}
+
 p.lead {
-  font-size: 125%;
+  font-size: 150%;
+}
+
+// add margins
+.spacer {
+  border-top: 1px solid #999;
+  margin-top: 45px;
+  margin-bottom: 45px;
 }
 
 // test gulp-autoprefixer
 input::placeholder {
-  color: main.$gray;
+  color: vars.$gray;
 }
