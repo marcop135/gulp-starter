@@ -1,14 +1,18 @@
-// this file is just a good starting point
+// This file is just a good starting point.
+// Tweak it, break it, rebuild it — have fun! 🚀
 //
-// you may use my (S)CSS framework https://github.com/marcop135/bullframe.css
+// Looking for solid CSS frameworks?
+// 👉 Check out: https://github.com/troxler/awesome-css-frameworks
 //
-// ...this is a list of awesome CSS frameworks
-// https://github.com/troxler/awesome-css-frameworks
+// Or try mine — lightweight, flexible, and modern:
+// 👉 https://github.com/marcop135/bullframe.css (bullframe.css)
+// CDN:
+// <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marcop135/bullframe.css@latest/bullframe.min.css">
 
 // test variables
 body {
-  background-color: $light;
-  color: $dark;
+  background-color: main.$light;
+  color: main.$dark;
 }
 
 // create a container
@@ -31,5 +35,5 @@ p.lead {
 
 // test gulp-autoprefixer
 input::placeholder {
-  color: $gray;
+  color: main.$gray;
 }
