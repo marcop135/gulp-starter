@@ -1,17 +1,11 @@
 'use strict';
 
-// Initialize modules
-// Import specific gulp API functions lets us write them below as series()
-// instead of gulp.series()
+// Import specific gulp API functions
 import { src, dest, watch, series, parallel } from 'gulp';
 
-import gulp from 'gulp';
-
-// Upgrade gulp-sass to v5
-// https://github.com/dlmanning/gulp-sass/tree/master#migrating-to-version-5
-const sass = require('gulp-sass')(require('sass'));
-
-// Import all the Gulp-related packages we want to use
+// Import necessary plugins
+import gulpSass from 'gulp-sass'; 
+import sass from 'sass'; // Dart Sass
 import postcss from 'gulp-postcss';
 import rename from 'gulp-rename';
 import autoprefixer from 'autoprefixer';
@@ -22,6 +16,9 @@ import concat from 'gulp-concat';
 import uglify from 'gulp-uglify';
 import cachebust from 'gulp-cache-bust';
 import browserSync from 'browser-sync';
+
+// Initialize gulp-sass with Dart Sass
+const sassCompiler = gulpSass(sass);
 
 // Setup BrowserSync server
 const server = browserSync.create();
@@ -40,10 +37,10 @@ function serve(done) {
   done();
 }
 
-// Task for Sass
+// Task for compiling SCSS to CSS
 function scssTask() {
   return src('src/assets/scss/**/*.scss')
-    .pipe(sass({ outputStyle: 'expanded' }))
+    .pipe(sassCompiler({ outputStyle: 'expanded' }).on('error', sassCompiler.logError)) // Dart Sass error handling
     .pipe(postcss([autoprefixer()]))
     .pipe(dest('dist/assets/css'))
     .pipe(postcss([cssnano()]))
@@ -51,39 +48,41 @@ function scssTask() {
     .pipe(dest('dist/assets/css', { sourcemaps: '.' }));
 }
 
-// Task for JS
+// Task for JavaScript (ES6+ to ES5, concatenation, and minification)
 function jsTask() {
   return src('src/assets/js/**/*.js')
-    .pipe(babel())
-    .pipe(concat('app.min.js'))
+    .pipe(babel()) // Transpile JavaScript
+    .pipe(concat('app.min.js')) // Concatenate JS files
     .pipe(dest('dist/assets/js'))
     .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
+    .pipe(uglify()) // Minify JS
     .pipe(dest('dist/assets/js', { sourcemaps: '.' }));
 }
 
-// Task for Images
+// Task for Image optimization
 function imageTask() {
   return src('src/assets/images/**/*.*')
-    .pipe(imagemin())
+    .pipe(imagemin()) // Optimize images
     .pipe(dest('dist/assets/images'));
 }
 
-// Task for Cache Busting
+// Task for Cache Busting (timestamping assets)
 function cacheBustTask() {
   return src('./*.html')
-    .pipe(cachebust({ type: 'timestamp' }))
+    .pipe(cachebust({ type: 'timestamp' })) // Add timestamp for cache busting
     .pipe(dest('dist/'));
 }
 
-// Watch Task
+// Watch task for automatic reloading on file changes
 function watchTask() {
-  watch(['./*.html', 'src/assets/scss/**/*.scss', 'src/assets/js/**/*.js', 'src/assets/images/**/*.*'],
-    series(parallel(scssTask, jsTask, imageTask, cacheBustTask), reload));
+  watch(
+    ['./*.html', 'src/assets/scss/**/*.scss', 'src/assets/js/**/*.js', 'src/assets/images/**/*.*'],
+    series(parallel(scssTask, jsTask, imageTask, cacheBustTask), reload)
+  );
 }
 
-// Build Task
-gulp.task('build', series(parallel(scssTask, jsTask, imageTask, cacheBustTask)));
+// Build task to execute all tasks
+export const build = series(parallel(scssTask, jsTask, imageTask, cacheBustTask));
 
-// Export the default task
+// Default task to execute build, serve, and watch
 export default series(parallel(scssTask, jsTask, imageTask, cacheBustTask), serve, watchTask);
