@@ -1,4 +1,4 @@
-# File processing boilerplate for HTML, Sass, JS, PNG, JPEG, GIF, and SVG files with Gulp.js
+# Gulp.js Starter — File Processing Boilerplate (HTML, CSS, Sass, JS, PNG, JPEG, GIF, SVG) 
 
 Using a set of boilerplate files when you're starting a website project can be a huge time-saver. Instead of having to start from scratch or copy and paste from previous projects, you can get up and running in just a minute or two.
 
