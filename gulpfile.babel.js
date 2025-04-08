@@ -52,7 +52,7 @@ function scssTask() {
 function jsTask() {
   return src('src/assets/js/**/*.js')
     .pipe(babel()) // Transpile JavaScript
-    .pipe(concat('app.min.js')) // Concatenate JS files
+    .pipe(concat('app.js')) // Concatenate JS files
     .pipe(dest('dist/assets/js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify()) // Minify JS
