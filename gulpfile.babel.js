@@ -5,6 +5,8 @@
 // instead of gulp.series()
 import { src, dest, watch, series, parallel } from 'gulp';
 
+import gulp from 'gulp';
+
 // Upgrade gulp-sass to v5
 // https://github.com/dlmanning/gulp-sass/tree/master#migrating-to-version-5
 const sass = require('gulp-sass')(require('sass'));
@@ -21,9 +23,9 @@ import uglify from 'gulp-uglify';
 import cachebust from 'gulp-cache-bust';
 import browserSync from 'browser-sync';
 
+// Setup BrowserSync server
 const server = browserSync.create();
 
-// setup the BrowserSync server
 function reload(done) {
   server.reload();
   done();
@@ -38,113 +40,50 @@ function serve(done) {
   done();
 }
 
-// File paths to watch
-const files = {
-  htmlPath: './*.html',
-  scssPath: 'src/assets/scss/**/*.scss',
-  jsPath: 'src/assets/js/**/*.js',
-  imagePath: 'src/assets/images/**/*.*',
-};
-
-// Sass task
-// compiles the style.scss file into style.css
+// Task for Sass
 function scssTask() {
-  return (
-    src(files.scssPath)
-      .pipe(sass({ outputStyle: 'expanded' }))
-      // PostCSS plugins
-      .pipe(postcss([autoprefixer()]))
-
-      // write pre-minifies styles
-      .pipe(dest('dist/assets/css'))
-
-      // PostCSS plugins
-      .pipe(postcss([cssnano()]))
-
-      // rename files
-      .pipe(
-        rename({
-          suffix: '.min',
-        })
-      )
-
-      // put final CSS file in dist folder
-      .pipe(
-        dest('dist/assets/css', {
-          sourcemaps: '.',
-        })
-      )
-  );
+  return src('src/assets/scss/**/*.scss')
+    .pipe(sass({ outputStyle: 'expanded' }))
+    .pipe(postcss([autoprefixer()]))
+    .pipe(dest('dist/assets/css'))
+    .pipe(postcss([cssnano()]))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(dest('dist/assets/css', { sourcemaps: '.' }));
 }
 
-// JS task
-// concatenates and uglifies JS files
+// Task for JS
 function jsTask() {
-  return (
-    src(files.jsPath)
-      //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
-
-      // transpile files
-      .pipe(babel())
-
-      // concat files
-      .pipe(concat('app.min.js'))
-
-      // write pre-minifies files
-      .pipe(dest('dist/assets/js'))
-
-      // rename files
-      .pipe(
-        rename({
-          suffix: '.min',
-        })
-      )
-
-      // minify scripts
-      .pipe(uglify())
-
-      // put final JS file in /dist folder
-      .pipe(
-        dest('dist/assets/js', {
-          sourcemaps: '.',
-        })
-      )
-  );
+  return src('src/assets/js/**/*.js')
+    .pipe(babel())
+    .pipe(concat('app.min.js'))
+    .pipe(dest('dist/assets/js'))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(uglify())
+    .pipe(dest('dist/assets/js', { sourcemaps: '.' }));
 }
 
-// image task
-// compress PNG, JPEG, GIF and SVG images
+// Task for Images
 function imageTask() {
-  return src(files.imagePath).pipe(imagemin()).pipe(dest('dist/assets/images'));
+  return src('src/assets/images/**/*.*')
+    .pipe(imagemin())
+    .pipe(dest('dist/assets/images'));
 }
 
-// cache busting task
-// add a timestamp string to CSS/JS style/script
+// Task for Cache Busting
 function cacheBustTask() {
-  return src(files.htmlPath)
-    .pipe(
-      cachebust({
-        type: 'timestamp',
-      })
-    )
+  return src('./*.html')
+    .pipe(cachebust({ type: 'timestamp' }))
     .pipe(dest('dist/'));
 }
 
-// watch task: watch SCSS, JS, image and HTML files for changes
-// If any change, run scss, js and image tasks simultaneously
-// then reload via browsersync
+// Watch Task
 function watchTask() {
-  watch(
-    [files.htmlPath, files.scssPath, files.jsPath, files.imagePath],
-    series(parallel(scssTask, jsTask, imageTask, cacheBustTask), reload)
-  );
+  watch(['./*.html', 'src/assets/scss/**/*.scss', 'src/assets/js/**/*.js', 'src/assets/images/**/*.*'],
+    series(parallel(scssTask, jsTask, imageTask, cacheBustTask), reload));
 }
 
-// Export the default Gulp task so it can be run
-// Runs the scss, js, image and cache busting tasks simultaneously
-// start local server and watch tasks
-export default series(
-  parallel(scssTask, jsTask, imageTask, cacheBustTask),
-  serve,
-  watchTask
-);
+// Build Task
+gulp.task('build', series(parallel(scssTask, jsTask, imageTask, cacheBustTask)));
+
+// Export the default task
+export default series(parallel(scssTask, jsTask, imageTask, cacheBustTask), serve, watchTask);
