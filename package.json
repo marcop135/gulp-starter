@@ -1,6 +1,6 @@
 {
   "name": "gulp-starter",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "File processing boilerplate for Sass, JS, images and SVG files with Gulp.js and friends",
   "main": "gulpfile.babel.js",
   "repository": {
