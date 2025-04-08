@@ -30,4 +30,4 @@ In this project, Gulp will be configured to run the following functions:
 
 ## Testing and compatibility
 
-This project has been tested in *npm v18.7.0*.
+This project has been tested in *nodejs v22.14.0*.
