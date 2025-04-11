@@ -1,52 +1,96 @@
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <!-- General meta tags needed-->
-        <meta charset="utf-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <!-- Needed for responsive design -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- If you want custom browser colors on mobile -->
-        <meta name="theme-color" content="#1843c1" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="#1843c1">
+<html lang="en">
 
-        <title></title>
+<head>
+  <meta charset="utf-8">
+  <title>HTML Template - Gulp Starter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="assets/css/main.min.css">
+</head>
 
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"> 
-        
-        <!-- CSS File -->
-        <link rel="stylesheet" href="dist/style.css?cb=1572492103778">
-    </head>
-    <body>
+<body>
+  <main>
+    <header>
+      <h1>gulp-starter (v1.5.3)</h1>
+      <p class="lead">
+        A file processing boilerplate for HTML, Sass, JS, PNG, JPEG, GIF, and SVG files powered by 
+        <a href="https://gulpjs.com/" target="_blank" rel="noopener noreferrer">Gulp.js</a> 
+        and a collection of useful plugins.
+      </p>
+      <p>
+        Get started quickly with this template. For more information, visit 
+        <a href="https://github.com/marcop135/gulp-starter" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </p>
+    </header>
 
-        <main>
-            <section class="content">
-                <h1>Front-end Boilerplate</h1>
-                <h2>Using Sass and Gulp</h2>
+    <section>
+      <h2>Quickstart Guide</h2>
+      <ol>
+        <li>Clone or download this Git repo onto your computer.</li>
+        <li>Install <a href="https://nodejs.org/en/" target="_blank" rel="noopener noreferrer">Node.js</a> if you haven't already.</li>
+        <li>Run <code>npm install</code> to install the required dependencies.</li>
+        <li>Run <code>gulp</code> to start the default Gulp task.</li>
+      </ol>
+    </section>
 
-                <p>
-                    Here's a quick set-up guide:
-                </p>
+    <section>
+      <h2>Gulp Plugins</h2>
+      <p>This project is configured with the following Gulp plugins to automate tasks:</p>
+      <ul>
+        <li><a href="https://www.npmjs.com/package/browser-sync" target="_blank" rel="noopener noreferrer">browsersync</a> - Local server with live-reloading.</li>
+        <li><a href="https://www.npmjs.com/package/gulp-sass" target="_blank" rel="noopener noreferrer">gulp-sass</a> - SCSS to CSS compilation.</li>
+        <li><a href="https://www.npmjs.com/package/gulp-autoprefixer" target="_blank" rel="noopener noreferrer">autoprefixer</a> - Automatically adds vendor prefixes to CSS.</li>
+        <li><a href="https://www.npmjs.com/package/gulp-rename" target="_blank" rel="noopener noreferrer">gulp-rename</a> - Renames compressed CSS/JS files.</li>
+        <li><a href="https://www.npmjs.com/package/gulp-cssnano" target="_blank" rel="noopener noreferrer">gulp-cssnano</a> - Minifies the CSS file.</li>
+        <li><a href="https://www.npmjs.com/package/gulp-babel" target="_blank" rel="noopener noreferrer">gulp-babel</a> - Transpiles JavaScript with Babel.</li>
+        <li><a href="https://www.npmjs.com/package/gulp-concat" target="_blank" rel="noopener noreferrer">gulp-concat</a> - Concatenates JavaScript files.</li>
+        <li><a href="https://www.npmjs.com/package/gulp-uglify" target="_blank" rel="noopener noreferrer">gulp-uglify</a> - Minifies JavaScript files.</li>
+        <li><a href="https://www.npmjs.com/package/gulp-imagemin" target="_blank" rel="noopener noreferrer">gulp-imagemin</a> - Compresses images (JPG, PNG, GIF).</li>
+        <li><a href="https://www.npmjs.com/package/gulp-cache-bust" target="_blank" rel="noopener noreferrer">gulp-cache-bust</a> - Cache busting for resources.</li>
+        <li>Final files are moved to the <code>/dist</code> folder for easy deployment.</li>
+      </ul>
+    </section>
 
-                <ul>
-                    <li>Clone Git repo</li>
-                    <li>Install by running "npm install" on the commmand line</li>
-                    <li>Run "gulp" on the command line.</li>
-                </ul>
+    <div class="spacer"></div>
+    <h2>Testing and Compatibility</h2>
 
-            </section>
-            
-            <aside>
-                <h3>Project Info</h3>
-                <p>
-                    This is a starter front-end project which will compile SCSS and JS files using Gulp 4.
-                </p>
-            </aside>
-            
-        </main>
+    <h3>gulp-imagemin</h3>
 
-        <!-- JavaScript File -->
-        <script src="dist/all.js?cb=1572492103778"></script>
-    </body>
+    <figure>
+      <img src="assets/images/cat.jpg" alt="Photo of a cat (JPG)">
+      <figcaption>This is a JPG image (original size: 147 KB)</figcaption>
+    </figure>
+
+    <figure>
+      <img src="assets/images/cat.png" alt="Photo of a cat (PNG)">
+      <figcaption>This is a PNG image (original size: 287 KB)</figcaption>
+    </figure>
+
+    <figure>
+      <img src="assets/images/cat.gif" alt="Photo of a cat (GIF)">
+      <figcaption>This is a GIF image (original size: 144 KB)</figcaption>
+    </figure>
+
+    <figure>
+      <img src="assets/images/moon.svg" width="20" height="20" alt="Moon icon (SVG)">
+      <figcaption>This is a SVG image (original size: 269 bytes)</figcaption>
+    </figure>
+
+    <h3>Nodejs</h3>
+    <p>This project has been tested with <code>npm v18.7.0</code>. Ensure compatibility with your version of npm.</p>
+
+  </main>
+
+  <footer>
+    <div class="spacer"></div>
+
+    <p>
+      For further details, visit the <a href="https://coder-coder.com/gulp-4-walk-through" target="_blank" rel="noopener noreferrer">original project's blog post</a>. Kudos to 
+      <a href="https://github.com/thecodercoder" target="_blank" rel="noopener noreferrer">@thecodercoder</a>.
+    </p>
+  </footer>
+
+  <script src="assets/js/app.min.js"></script>
+</body>
+
 </html>

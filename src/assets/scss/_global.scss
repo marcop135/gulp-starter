@@ -1,0 +1,60 @@
+// This file is just a good starting point.
+// Tweak it, break it, rebuild it — have fun! 🚀
+//
+// Looking for solid CSS frameworks?
+// 👉 Check out: https://github.com/troxler/awesome-css-frameworks
+//
+// Or try mine — lightweight, flexible, and modern:
+// 👉 https://github.com/marcop135/bullframe.css (bullframe.css)
+// CDN:
+// <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marcop135/bullframe.css@latest/bullframe.min.css">
+
+@use 'utils/variables' as vars;
+
+// just testing CSS variables
+body {
+  background-color: vars.$light;
+  color: vars.$dark;
+}
+
+// create two container
+main,
+footer {
+  padding: 15px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// make all images responsive by default
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// customise typography
+h1 {
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 30px;
+}
+
+p.lead {
+  font-size: 150%;
+}
+
+// add margins
+.spacer {
+  border-top: 1px solid #999;
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+
+// test gulp-autoprefixer
+input::placeholder {
+  color: vars.$gray;
+}
